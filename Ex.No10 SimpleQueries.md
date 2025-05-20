@@ -1,51 +1,41 @@
-# Ex.No: 10  Logic Programming –  Simple queries from facts and rules
-### DATE:                                                                            
-### REGISTER NUMBER : 
-### AIM: 
-To write a prolog program to find the answer of query. 
-###  Algorithm:
- Step 1: Start the program <br> 
- Step 2: Convert the sentence into First order Logic  <br> 
- Step 3:  Convert the sentence into Horn clause form  <br> 
- Step 4: Add rules and predicates in a program   <br> 
- Step 5:  Pass the query to program. <br> 
- Step 6: Prolog interpreter shows the output and return answer. <br> 
- Step 8:  Stop the program.
-### Program:
-### Task 1:
-Construct the FOL representation for the following sentences <br> 
-1.	John likes all kinds of food.  <br> 
-2.	Apples are food.  <br> 
-3.	Chicken is a food.  <br> 
-4.	Sue eats everything Bill eats. <br> 
-5.	 Bill eats peanuts  <br> 
-   Convert into clause form and Prove that John like Apple by using Prolog. <br> 
-### Program:
+Ex.No: 3 Implementation of Minimax Search
+DATE: 11-03-25
+REGISTER NUMBER : 212222060171
+AIM:
+Write a mini-max search algorithm to find the optimal value of MAX Player from the given graph.
 
+Algorithm:
+Start the program
+import the math package
+Specify the score value of leaf nodes and find the depth of binary tree from leaf nodes.
+Define the minimax function
+If maximum depth is reached then get the score value of leaf node.
+Max player find the maximum value by calling the minmax function recursively.
+Min player find the minimum value by calling the minmax function recursively.
+Call the minimax function and print the optimum value of Max player.
+Stop the program.
+Program:
+import math
+def minimax(curDepth, nodeIndex, maxTurn, scores, targetDepth):
+    # base case: targetDepth reached
+    if curDepth == targetDepth:
+        return scores[nodeIndex]
 
-### Output:
+    if maxTurn:
+        return max(minimax(curDepth + 1, nodeIndex * 2, False, scores, targetDepth),
+                   minimax(curDepth + 1, nodeIndex * 2 + 1, False, scores, targetDepth))
+    else:
+        return min(minimax(curDepth + 1, nodeIndex * 2, True, scores, targetDepth),
+                   minimax(curDepth + 1, nodeIndex * 2 + 1, True, scores, targetDepth))
 
-### Task 2:
-Consider the following facts and represent them in predicate form: <br>              
-1.	Steve likes easy courses. <br> 
-2.	Science courses are hard. <br> 
-3. All the courses in Have fun department are easy <br> 
-4. BK301 is Have fun department course.<br> 
-Convert the facts in predicate form to clauses and then prove by resolution: “Steve likes BK301 course”<br> 
+# Driver code
+scores = [3, 5, 2, 9, 12, 5, 23, 20]
+treeDepth = math.ceil(math.log2(len(scores)))  # calculate depth of the tree
+print("The optimal value is: ", end="")
+print(minimax(0, 0, True, scores, treeDepth))
 
-### Program:
+Output:
+Screenshot (8)
 
-
-### Output:
-
-### Task 3:
-Consider the statement <br> 
-“This is a crime for an American to sell weapons to hostile nations. The Nano , enemy of America has some missiles and its missiles were sold it by Colonal West who is an American” <br> 
-Convert to Clause form and prove west is criminal by using Prolog.<br> 
-### Program:
-
-
-### Output:
-
-### Result:
-Thus the prolog programs were executed successfully and the answer of query was found.
+Result:
+Thus the optimum value of max player was found using minimax search.
