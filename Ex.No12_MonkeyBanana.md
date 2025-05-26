@@ -1,6 +1,6 @@
-# Ex.No: 11  Planning –  Monkey Banana Problem
-### DATE:                                                                            
-### REGISTER NUMBER : 
+# Ex.No: 12  Planning –  Monkey Banana Problem
+### DATE: 22/04/2025                                                                           
+### REGISTER NUMBER : 212222060171
 ### AIM: 
 To find the sequence of plan for Monkey Banana problem using PDDL Editor.
 ###  Algorithm:
@@ -11,21 +11,37 @@ Step 4: Specify the actions GOTO, CLIMB, PUSH-BOX, GET-KNIFE, GRAB-BANANAS in Mo
 Step 5:   Define a problem for Monkey Banana problem.<br> 
 Step 6:  Obtain the plan for given problem.<br> 
 Step 7: Stop the program.<br> 
+
 ### Program:
 
-
-
-
-
-
-
-
-
-### Input 
-
-### Output/Plan:
-
-
-
-### Result:
-Thus the plan was found for the initial and goal state of given problem.
+      (define (domain monkey)
+      (:requirements :strips)
+      (:constants monkey box knife bananas glass waterfountain)
+      (:predicates (location ?x)
+      Preview Code Blame Raw
+      (on-floor)
+      (at ?m ?x)
+      (hasknife)
+      (onbox ?x)
+      (hasbananas)
+      (hasglass)
+      (haswater))
+      ;; movement and climbing
+      (:action GO-TO
+      :parameters (?x ?y)
+      :precondition (and (location ?x) (location ?y) (on-floor) (at monkey
+      ?y))
+      :effect (and (at monkey ?x) (not (at monkey ?y))))
+      (:action CLIMB
+      :parameters (?x)
+      :precondition (and (location ?x) (at box ?x) (at monkey ?x))
+      :effect (and (onbox ?x) (not (on-floor))))
+      (:action PUSH-BOX
+      :parameters (?x ?y)
+      :precondition (and (location ?x) (location ?y) (at box ?y) (at
+       monkey ?y)
+      (on-floor))
+      :effect (and (at monkey ?x) (not (at monkey ?y))
+      (at box ?x) (not (at box ?y))))
+      ;; getting bananas
+      (:action GET-KNIFE
